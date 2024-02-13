@@ -20,7 +20,7 @@ public class ServerGUI extends JFrame implements ServerView {
 
 
     public ServerGUI() {
-        server = new Server(this);
+        server = new Server();
         //настройки окна
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         addWindowListener(new WindowAdapter() {

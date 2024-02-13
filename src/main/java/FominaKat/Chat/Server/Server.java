@@ -8,6 +8,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 /**
  * обработка сервером данных
@@ -15,12 +18,11 @@ import java.util.ArrayList;
 public class Server {
     private static boolean serverWorking;
     private ArrayList<ClientView> listConnect;
-    private ServerGUI serverGUI;
-    private String archiveHistory = "history.txt";
-    // private String history = "";
 
-    public Server(ServerGUI serverGUI) {
-        this.serverGUI = serverGUI;
+    private String archiveHistory = "history.txt";
+    private static final Logger logger = LoggerFactory.getLogger(Server.class);
+
+    public Server() {
         this.listConnect = new ArrayList<>();
     }
 
@@ -31,18 +33,21 @@ public class Server {
     public static void startServer() {
         if (!serverWorking) {
             serverWorking = true;
+            logger.info("Сервер запущен");
         }
     }
 
     public static void stopServer() {
         if (serverWorking) {
             serverWorking = false;
+            logger.info("Сервер остановлен");
         }
     }
 
     public void connectClient(ClientView client) {
         if (!listConnect.contains(client)) {
             listConnect.add(client);
+            logger.info(String.format("клиент '%s' - подключен", client.nameClient()));
         }
         String history = exactMessageHistory();
         client.answerMessageFromSever(history);
@@ -73,11 +78,13 @@ public class Server {
     public void disconnectClient(ClientView client) {
         client.disconnected();
         listConnect.remove(client);
+        logger.info(String.format("клиент '%s' - отключен", client.nameClient()));
     }
 
     public void disconnectAll() {
         listConnect.stream().forEach(client -> client.disconnected());
         listConnect.clear();
+        logger.info("все пользователи отключены");
     }
 
     private void saveMessageInHistory(String message) {
@@ -86,6 +93,7 @@ public class Server {
             writer.write(message + "\n");
         } catch (IOException e) {
             e.getMessage();
+            logger.error("не удалось сохранить сообщение в историю: " + e.getMessage());
         }
     }
 
@@ -98,6 +106,7 @@ public class Server {
             }
         } catch (IOException e) {
             e.getMessage();
+            logger.error("не удалось восстановить историю сообщений: " + e.getMessage());
         }
         return historyBilder.toString();
     }
@@ -106,7 +115,7 @@ public class Server {
 
         File file = new File(archiveHistory);
         file.delete();
-
+        logger.info("файл history - удален");
 
     }
 }
