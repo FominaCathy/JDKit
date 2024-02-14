@@ -1,4 +1,4 @@
-package FominaKat;
+package FominaKat.Chat;
 
 import FominaKat.Chat.Client.ClientGUI;
 import FominaKat.Chat.Server.ServerGUI;

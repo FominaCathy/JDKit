@@ -14,13 +14,13 @@ public class ClientGUI extends JFrame implements ClientView {
     private static final int WIN_WIDTH = 350;
     private static final int WIN_POSX = 300;
     private static final int WIN_POSY = 100;
+
     private ServerGUI server;
     private String name; //TODO урать ???
     private JPanel panelTop;
     private JTextField nameUser;
-    Client client;
-
-    JButton sendBtn;
+    private Client client;
+    private JButton sendBtn;
 
     /**
      * графическое представление окна клиента
@@ -84,17 +84,8 @@ public class ClientGUI extends JFrame implements ClientView {
      * @return
      */
     private JPanel createMessagePanel() {
-
         JPanel messagePanel = new JPanel(new BorderLayout());
         JTextField messageField = new JTextField();
-        sendBtn = new JButton("send");
-        sendBtn.setEnabled(false);
-        messagePanel.add(messageField, BorderLayout.CENTER);
-        messagePanel.add(sendBtn, BorderLayout.EAST);
-        sendBtn.addActionListener(e -> {
-            sendMessageServer(messageField.getText());
-            messageField.setText("");
-        });
         messageField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -104,6 +95,16 @@ public class ClientGUI extends JFrame implements ClientView {
                 }
             }
         });
+
+        sendBtn = new JButton("send");
+        sendBtn.setEnabled(false);
+        sendBtn.addActionListener(e -> {
+            sendMessageServer(messageField.getText());
+            messageField.setText("");
+        });
+
+        messagePanel.add(messageField, BorderLayout.CENTER);
+        messagePanel.add(sendBtn, BorderLayout.EAST);
         return messagePanel;
     }
 
@@ -125,11 +126,9 @@ public class ClientGUI extends JFrame implements ClientView {
             sendBtn.setEnabled(true);
             panelTop.setVisible(false);
             setTitle("Chat client " + nameUser.getText());
-            //chatlogClient.append("Успешное подключение\n");
         } else {
             chatlogClient.append("Сервер недоступен\n");
             setTitle("Chat client (disconnect)");
-
         }
     }
 

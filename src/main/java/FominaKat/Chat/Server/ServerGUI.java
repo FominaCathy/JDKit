@@ -9,23 +9,23 @@ import java.awt.event.WindowEvent;
 
 public class ServerGUI extends JFrame implements ServerView {
 
-    private static JTextArea chatAll;
     private static final int WIN_HEIGHT = 505;
     private static final int WIN_WIDTH = 350;
     private static final int WIN_POSX = 800;
     private static final int WIN_POSY = 100;
-    JButton btnStart = new JButton("Start");
-    JButton btnStop = new JButton("Stop");
+
+    private JTextArea chatAll;
+    private JButton btnStart, btnStop;
     private Server server;
 
 
     public ServerGUI() {
         server = new Server();
-        //настройки окна
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
+                disconnectAll();
                 server.clearHistory();
                 System.exit(0);
             }
@@ -35,11 +35,8 @@ public class ServerGUI extends JFrame implements ServerView {
         setTitle("Chat Server");
         setResizable(true);
 
-        add(createServicePanel(), BorderLayout.NORTH);
-
-        chatAll = new JTextArea();
-        chatAll.setEditable(false);
-        add(new JScrollPane(chatAll), BorderLayout.CENTER); //с полосой прокрутки
+        add(servicePanel(), BorderLayout.NORTH);
+        add(windowChatAll(), BorderLayout.CENTER); //с полосой прокрутки
 
         setVisible(true);
     }
@@ -49,31 +46,41 @@ public class ServerGUI extends JFrame implements ServerView {
      *
      * @return
      */
-    private JPanel createServicePanel() {
-        // панель с кнопками
+    private JPanel servicePanel() {
         JPanel servicePanel = new JPanel(new GridLayout(1, 2));
+        btnStop = new JButton("Stop");
         btnStop.setEnabled(false);
-        servicePanel.add(btnStart);
-        servicePanel.add(btnStop);
+        btnStop.addActionListener(e -> {
+            disconnectAll();
+            server.stopServer();
+            setTitle("Chat Server (disabled)");
+            chatAll.append("server STOP\n");
+            btnStop.setEnabled(false);
+            btnStart.setEnabled(true);
+        });
+
+        btnStart = new JButton("Start");
         btnStart.addActionListener(e -> {
-            Server.startServer();
+            server.startServer();
+            setTitle("Chat Server (running)");
             chatAll.append("server START\n");
             btnStart.setEnabled(false);
             btnStop.setEnabled(true);
         });
 
-        btnStop.addActionListener(e -> {
-            disconnectAll();
-            Server.stopServer();
-            chatAll.append("server STOP\n");
-            btnStop.setEnabled(false);
-            btnStart.setEnabled(true);
-        });
+        servicePanel.add(btnStart);
+        servicePanel.add(btnStop);
         return servicePanel;
     }
 
-    public static boolean getWorking() {
-        return Server.isServerWorking();
+    private JScrollPane windowChatAll() {
+        chatAll = new JTextArea();
+        chatAll.setEditable(false);
+        return new JScrollPane(chatAll);
+    }
+
+    public boolean getWorking() {
+        return server.isServerWorking();
     }
 
     /**
@@ -90,7 +97,7 @@ public class ServerGUI extends JFrame implements ServerView {
     /**
      * обработка сообщения от клиента (рассылка его всем клиентам и добавление в общий чат
      *
-     * @param message
+     * @param message текст сообщения
      */
     public void messageFromClient(String message) {
         chatAll.append(message + "\n");
@@ -98,11 +105,10 @@ public class ServerGUI extends JFrame implements ServerView {
 
     }
 
-
     /**
      * сервер может отправить сообщение отдельному клиенту
      *
-     * @param message
+     * @param message текст сообщения
      */
     public void answerMessageClient(ClientView client, String message) {
         server.answerMessageClient(client, message);

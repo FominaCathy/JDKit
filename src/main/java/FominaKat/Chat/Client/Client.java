@@ -1,9 +1,6 @@
 package FominaKat.Chat.Client;
 
-import FominaKat.Chat.Server.Server;
 import FominaKat.Chat.Server.ServerGUI;
-
-import javax.swing.*;
 
 public class Client {
     private ClientView clientView;
@@ -18,10 +15,10 @@ public class Client {
     /**
      * отправка сообщение на сервер
      *
-     * @param message
+     * @param message текст сообщения
      */
     public void sendMessageServer(String message) {
-        if (!message.isEmpty() && ServerGUI.getWorking()) {
+        if (!message.isEmpty() && server.getWorking()) {
             String text = clientView.nameClient() + ": " + message;
             server.messageFromClient(text);
         }
@@ -37,7 +34,7 @@ public class Client {
     }
 
     public void connected() {
-        if (ServerGUI.getWorking()) {
+        if (server.getWorking()) {
             server.connectClient(clientView);
             connect = true;
         } else {

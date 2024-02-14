@@ -19,7 +19,7 @@ public interface ClientView {
     /**
      * получить ответ от сервара
      *
-     * @param message
+     * @param message текст сообщения
      */
     void answerMessageFromSever(String message);
 

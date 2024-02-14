@@ -2,12 +2,12 @@ package FominaKat.Chat.Server;
 
 import FominaKat.Chat.Client.ClientView;
 
-
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,28 +16,27 @@ import org.slf4j.LoggerFactory;
  * обработка сервером данных
  */
 public class Server {
-    private static boolean serverWorking;
+    private boolean serverWorking;
     private ArrayList<ClientView> listConnect;
-
     private String archiveHistory = "history.txt";
-    private static final Logger logger = LoggerFactory.getLogger(Server.class);
+    private static final Logger logger = LoggerFactory.getLogger(Server.class.getName());
 
     public Server() {
         this.listConnect = new ArrayList<>();
     }
 
-    public static boolean isServerWorking() {
+    public boolean isServerWorking() {
         return serverWorking;
     }
 
-    public static void startServer() {
+    public void startServer() {
         if (!serverWorking) {
             serverWorking = true;
             logger.info("Сервер запущен");
         }
     }
 
-    public static void stopServer() {
+    public void stopServer() {
         if (serverWorking) {
             serverWorking = false;
             logger.info("Сервер остановлен");
@@ -56,11 +55,10 @@ public class Server {
     /**
      * отправка сообщения всем подключенным клиентам
      *
-     * @param message
+     * @param message текст сообщения
      */
     public void sendMessageFromClient(String message) {
-
-        listConnect.stream().forEach(client -> client.answerMessageFromSever(message + "\n"));
+        listConnect.forEach(client -> client.answerMessageFromSever(message + "\n"));
         saveMessageInHistory(message);
     }
 
@@ -68,7 +66,7 @@ public class Server {
      * сервер может отправить сообщение отдельному клиенту
      *
      * @param client
-     * @param message
+     * @param message текст сообщения
      */
 
     public void answerMessageClient(ClientView client, String message) {
@@ -82,14 +80,13 @@ public class Server {
     }
 
     public void disconnectAll() {
-        listConnect.stream().forEach(client -> client.disconnected());
+        listConnect.forEach(ClientView::disconnected);
         listConnect.clear();
         logger.info("все пользователи отключены");
     }
 
     private void saveMessageInHistory(String message) {
         try (FileWriter writer = new FileWriter(archiveHistory, true)) {
-
             writer.write(message + "\n");
         } catch (IOException e) {
             e.getMessage();
@@ -112,7 +109,6 @@ public class Server {
     }
 
     public void clearHistory() {
-
         File file = new File(archiveHistory);
         file.delete();
         logger.info("файл history - удален");
