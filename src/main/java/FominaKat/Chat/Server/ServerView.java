@@ -4,7 +4,7 @@ import FominaKat.Chat.Client.ClientView;
 
 public interface ServerView {
     /**
-     * включение сервера
+     * подключение клиента
      * @param clientView клиент
      */
     void connectClient(ClientView clientView);

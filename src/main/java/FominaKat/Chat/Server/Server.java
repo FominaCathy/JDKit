@@ -23,6 +23,7 @@ public class Server {
 
     public Server() {
         this.listConnect = new ArrayList<>();
+
     }
 
     public boolean isServerWorking() {

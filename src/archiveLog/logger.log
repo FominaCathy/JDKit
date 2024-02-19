@@ -49,3 +49,27 @@
 11:58:31 [AWT-EventQueue-0] INFO  FominaKat.Chat.Server.Server - Сервер запущен
 11:58:37 [AWT-EventQueue-0] INFO  FominaKat.Chat.Server.Server - все пользователи отключены
 11:58:37 [AWT-EventQueue-0] INFO  FominaKat.Chat.Server.Server - файл history - удален
+13:38:00 [AWT-EventQueue-0] INFO  FominaKat.Chat.Server.Server - Сервер запущен
+13:38:01 [AWT-EventQueue-0] INFO  FominaKat.Chat.Server.Server - клиент 'Petr' - подключен
+13:38:01 [AWT-EventQueue-0] ERROR FominaKat.Chat.Server.Server - не удалось восстановить историю сообщений: history.txt (Не удается найти указанный файл)
+13:38:02 [AWT-EventQueue-0] INFO  FominaKat.Chat.Server.Server - клиент 'Bob Cat' - подключен
+13:38:03 [AWT-EventQueue-0] INFO  FominaKat.Chat.Server.Server - все пользователи отключены
+13:38:03 [AWT-EventQueue-0] INFO  FominaKat.Chat.Server.Server - Сервер остановлен
+13:38:12 [AWT-EventQueue-0] INFO  FominaKat.Chat.Server.Server - Сервер запущен
+13:38:13 [AWT-EventQueue-0] INFO  FominaKat.Chat.Server.Server - клиент 'Petr' - подключен
+13:38:16 [AWT-EventQueue-0] INFO  FominaKat.Chat.Server.Server - клиент 'Bob Cat' - подключен
+13:38:18 [AWT-EventQueue-0] INFO  FominaKat.Chat.Server.Server - все пользователи отключены
+13:38:18 [AWT-EventQueue-0] INFO  FominaKat.Chat.Server.Server - Сервер остановлен
+13:38:19 [AWT-EventQueue-0] INFO  FominaKat.Chat.Server.Server - все пользователи отключены
+13:38:19 [AWT-EventQueue-0] INFO  FominaKat.Chat.Server.Server - файл history - удален
+13:40:51 [AWT-EventQueue-0] INFO  FominaKat.Chat.Server.Server - Сервер запущен
+13:40:53 [AWT-EventQueue-0] INFO  FominaKat.Chat.Server.Server - клиент 'Petr' - подключен
+13:40:53 [AWT-EventQueue-0] ERROR FominaKat.Chat.Server.Server - не удалось восстановить историю сообщений: history.txt (Не удается найти указанный файл)
+13:40:54 [AWT-EventQueue-0] INFO  FominaKat.Chat.Server.Server - клиент 'Bob Cat' - подключен
+13:40:59 [AWT-EventQueue-0] INFO  FominaKat.Chat.Server.Server - все пользователи отключены
+13:40:59 [AWT-EventQueue-0] INFO  FominaKat.Chat.Server.Server - Сервер остановлен
+13:41:02 [AWT-EventQueue-0] INFO  FominaKat.Chat.Server.Server - Сервер запущен
+13:41:03 [AWT-EventQueue-0] INFO  FominaKat.Chat.Server.Server - клиент 'Petr' - подключен
+13:41:08 [AWT-EventQueue-0] INFO  FominaKat.Chat.Server.Server - клиент 'Bob Cat' - подключен
+13:41:12 [AWT-EventQueue-0] INFO  FominaKat.Chat.Server.Server - все пользователи отключены
+13:41:12 [AWT-EventQueue-0] INFO  FominaKat.Chat.Server.Server - файл history - удален
