@@ -73,3 +73,18 @@
 13:41:08 [AWT-EventQueue-0] INFO  FominaKat.Chat.Server.Server - клиент 'Bob Cat' - подключен
 13:41:12 [AWT-EventQueue-0] INFO  FominaKat.Chat.Server.Server - все пользователи отключены
 13:41:12 [AWT-EventQueue-0] INFO  FominaKat.Chat.Server.Server - файл history - удален
+22:17:30 [Thread-2] INFO  Dinner - Thinker 2 - взял вилку(1, 3) - (1 -й раз)
+22:17:30 [Thread-1] INFO  Dinner - Thinker 1 - взял вилку(0, 2) - (1 -й раз)
+22:17:31 [Thread-0] INFO  Dinner - Thinker 0 - взял вилку(4, 1) - (1 -й раз)
+22:17:31 [Thread-4] INFO  Dinner - Thinker 4 - взял вилку(3, 0) - (1 -й раз)
+22:17:31 [Thread-2] INFO  Dinner - Thinker 2 - взял вилку(1, 3) - (2 -й раз)
+22:17:31 [Thread-3] INFO  Dinner - Thinker 3 - взял вилку(2, 4) - (1 -й раз)
+22:17:32 [Thread-3] INFO  Dinner - Thinker 3 - взял вилку(2, 4) - (2 -й раз)
+22:17:32 [Thread-4] INFO  Dinner - Thinker 4 - взял вилку(3, 0) - (2 -й раз)
+22:17:32 [Thread-1] INFO  Dinner - Thinker 1 - взял вилку(0, 2) - (2 -й раз)
+22:17:32 [Thread-0] INFO  Dinner - Thinker 0 - взял вилку(4, 1) - (2 -й раз)
+22:17:32 [Thread-3] INFO  Dinner - Thinker 3 - взял вилку(2, 4) - (3 -й раз)
+22:17:33 [Thread-4] INFO  Dinner - Thinker 4 - взял вилку(3, 0) - (3 -й раз)
+22:17:33 [Thread-1] INFO  Dinner - Thinker 1 - взял вилку(0, 2) - (3 -й раз)
+22:17:33 [Thread-0] INFO  Dinner - Thinker 0 - взял вилку(4, 1) - (3 -й раз)
+22:17:34 [Thread-2] INFO  Dinner - Thinker 2 - взял вилку(1, 3) - (3 -й раз)
